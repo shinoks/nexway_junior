@@ -1,29 +1,34 @@
 <?php
 namespace App\Test\Utils;
 
-use App\Utils\ReverseStringUtils;
+use App\Utils\LeapYearUtils;
 use PHPUnit\Framework\TestCase;
 
-class ReverseStringTest extends TestCase
+class LeapYearTest extends TestCase
 {
     public function testReverse()
     {
-        $strings = [
-            "Abcdefghijk",
-            "Abcdefghijkl",
-            "Abcdefghijkl\n",
+        $years = [
+            2016,
+            2015,
+            2000,
+            1604,
+            1603,
+            1600,
+            0,
+            -4,
+            -100,
+            -400,
+            -401,
+            "ABCDE",
             "",
-            "Abcd\nefgh\rijkl\tmnop",
-            "Zażółć gęślą jaźń",
-            "Quick brown fox\0 jumped over the lazy dog",
-            "读万卷书不如行万里路"
+            null
         ];
-        $reverseString = new ReverseStringUtils();
-        foreach ($strings as $string){
-            $result = $reverseString->reverse($string);
+        $leapYear = new LeapYearUtils();
+        foreach ($years as $year){
+            $result = $leapYear->leapYear($year);
 
-            $this->assertEquals($result,strrev($string));
+            $this->assertTrue($result == date('L',$year));
         }
-
     }
 }
