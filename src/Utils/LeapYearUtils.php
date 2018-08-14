@@ -13,7 +13,7 @@ class LeapYearUtils
      */
     public function leapYear(?int $year ): bool
     {
-        if(isset($year)){
+        if(!isset($year)){
             $year = date('Y',time());
         }
 

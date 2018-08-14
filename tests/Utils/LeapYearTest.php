@@ -19,16 +19,13 @@ class LeapYearTest extends TestCase
             -4,
             -100,
             -400,
-            -401,
-            "ABCDE",
-            "",
-            null
+            -401
         ];
         $leapYear = new LeapYearUtils();
         foreach ($years as $year){
             $result = $leapYear->leapYear($year);
 
-            $this->assertTrue($result == date('L',$year));
+            $this->assertTrue($result == date('L',mktime(0,0,0,1,1,$year)));
         }
     }
 }
